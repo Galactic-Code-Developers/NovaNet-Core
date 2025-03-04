@@ -1,2 +1,2 @@
-# NovaNet-Core-
-NovaNet-Core/
+# NovaNet Core
+NovaNet-Core
