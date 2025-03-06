@@ -1,14 +1,3 @@
-### **🚀 Updated `README.md` with NVIDIA Jetson Orin Integration**  
-This update includes **full NVIDIA Jetson Orin Nano Supercomputer integration**, ensuring:  
-* **AI-Optimized Validator Selection Using TensorRT**  
-* **Real-Time Fraud Detection via NVIDIA AI Inference**  
-* **Edge Computing for Decentralized Staking & Delegation**  
-* **Quantum-Assisted Smart Contracts Execution**  
-
----
-
-### **📜 `README.md` (Updated)**
-```md
 # 🚀 NovaNet: AI-Optimized Blockchain with NVIDIA Jetson Orin Support
 
 ## 🌍 Overview
