@@ -131,7 +131,7 @@ npm run monitor
 | **Network** | **RPC URL** | **Chain ID** | **Explorer** |
 |------------|------------|--------------|--------------|
 | **Testnet** | `https://testnet-rpc.novanetchain.xyz` | `1030` | [NovaNet Testnet Explorer](https://explorer.novanetchain.xyz/testnet) |
-| **Mainnet** | `https://rpc.chain.xyz.io` | `2030` | [NovaNet Mainnet Explorer](https://explorer.novanetchain.xyzo/mainnet) |
+| **Mainnet** | `https://rpc.novanetchain.xyz.io` | `2030` | [NovaNet Mainnet Explorer](https://explorer.novanetchain.xyzo/mainnet) |
 
 ---
 
