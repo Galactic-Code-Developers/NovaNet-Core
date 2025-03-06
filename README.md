@@ -156,8 +156,8 @@ npx hardhat run scripts/bridge.js --network testnet
 
 | **Network** | **RPC URL** | **Chain ID** | **Explorer** |
 |------------|------------|--------------|--------------|
-| **Testnet** | `https://testnet-rpc.novanet.io` | `1030` | [NovaNet Testnet Explorer](https://explorer.novanet.io/testnet) |
-| **Mainnet** | `https://rpc.novanet.io` | `2030` | [NovaNet Mainnet Explorer](https://explorer.novanet.io/mainnet) |
+| **Testnet** | `https://testnet-rpc.novanetchain.xyz` | `1030` | [NovaNet Testnet Explorer](https://explorer.novanetchain.xyz/testnet) |
+| **Mainnet** | `https://rpc.novanetchain.xyz` | `2030` | [NovaNet Mainnet Explorer](https://explorer.novanetchain.xyz/mainnet) |
 
 ---
 
@@ -171,17 +171,4 @@ npx hardhat run scripts/bridge.js --network testnet
 - 📢 **Telegram**: [NovaNet Governance](https://t.me/NovaNetGovernance)  
 
 🚀 **Join us in building the future of decentralized AI-driven governance & blockchain!**  
-```
-
----
-
-## **🔹 Key Features in `README.md`**
-| **Feature** | **Description** |
-|------------|----------------|
-| **Complete NovaNet Overview** | **Explains AI-powered governance, validation, and security.** |
-| **Smart Contract Architecture** | **Lists core contracts & their functions.** |
-| **Step-by-Step Setup Guide** | **Explains installation, deployment, and network configuration.** |
-| **Smart Contract Testing & Monitoring** | **Includes test commands for governance, validator, and treasury tracking.** |
-| **Cross-Chain Interoperability Guide** | **Details NovaNet’s multi-chain integration.** |
-| **Security & Fraud Prevention** | **Explains slashing, treasury protection & AI fraud detection.** |
 
