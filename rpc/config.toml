@@ -1,1 +1,87 @@
-config.toml
+# NovaNet Configuration File - config.toml
+# ==========================================
+# This file configures the NovaNet blockchain node, validator, governance, 
+# treasury, staking, and security parameters.
+
+[network]
+network_id = "novanet-1"
+node_name = "NovaNetNode"
+p2p_listen_port = 30303
+max_peers = 50
+enable_discovery = true
+enable_cross_chain = true  # Enables interoperability with other chains
+
+[rpc]
+enabled = true
+rpc_listen_address = "0.0.0.0"
+rpc_listen_port = 8545
+rpc_cors_allowed_origins = ["*"]
+rpc_api_enabled = ["net", "eth", "txpool", "ai", "governance", "validator", "staking"]
+
+[consensus]
+consensus_algorithm = "AI-Delegated-Proof-of-Stake"  # AI-DPoS consensus model
+block_time = 3  # Block interval in seconds
+epoch_length = 1000  # Epoch length for validator rotation
+
+[validator]
+minimum_stake = "10000 NOVA"
+validator_selection_method = "AI-Optimized"
+max_validators = 100
+slashing_penalty_rate = 0.05  # 5% penalty for misbehavior
+reputation_decay_rate = 0.02  # Reputation reduction per violation
+reward_distribution_method = "AIWeighted"
+
+[staking]
+staking_contract_address = "0xNovaNetStakingContract"
+minimum_delegation_stake = "100 NOVA"
+unstake_cooldown = 50  # Blocks before unstaking is allowed
+
+[treasury]
+treasury_contract_address = "0xNovaNetTreasuryContract"
+initial_treasury_funds = "5000000 NOVA"
+treasury_reserve_threshold = "1000000 NOVA"
+max_fund_allocation_per_proposal = "5000 NOVA"
+
+[governance]
+proposal_threshold = "500 NOVA"  # Minimum stake required to submit a proposal
+voting_duration = 7200  # 2 days in blocks (assuming 3-second block time)
+proposal_execution_delay = 200  # Blocks to wait before execution
+ai_proposal_scoring_enabled = true
+ai_vote_weighting_enabled = true
+
+[security]
+enable_fraud_detection = true
+fraud_threshold = 80  # AI-detected fraud score limit before action
+auto_slashing = true
+ai_slashing_adjustment = true
+
+[audit]
+enable_audit_logging = true
+audit_log_storage_limit = 5000  # Maximum audit logs before pruning
+audit_logger_contract_address = "0xAIAuditLoggerContract"
+
+[oracle]
+enable_oracle = true
+oracle_update_interval = 300  # Interval (seconds) for pulling external data
+oracle_contract_address = "0xNovaNetOracleContract"
+
+[bridge]
+enable_bridge = true
+supported_chains = ["Ethereum", "Polkadot", "Cosmos", "NovaNet"]
+bridge_fee = "0.01 NOVA"
+bridge_contract_address = "0xNovaNetBridgeContract"
+
+[logging]
+log_level = "INFO"
+log_output = "logs/novanet.log"
+enable_metrics = true
+
+[ai]
+enable_ai_modules = true
+ai_model_version = "2.1"
+ai_validator_selection_enabled = true
+ai_reward_distribution_enabled = true
+ai_treasury_optimization_enabled = true
+ai_governance_fraud_detection_enabled = true
+
+# End of NovaNet Configuration File
