@@ -141,7 +141,7 @@ npm run monitor
 📘 **GitHub Docs**: [NovaNet Developer Wiki](https://github.com/Galactic-Code-Developers/NovaNet-Core/wiki)  
 📢 **Community**:  
 - 🗣️ **Discord**: [NovaNet Community Chat](https://discord.gg/NovaNet)  
-- 🏛 **Twitter**: [@NovaNet_Official](https://twitter.com/NovaNet_Official)  
-- 📢 **Telegram**: [NovaNet Governance](https://t.me/NovaNetGovernance)  
+- 🏛 **Twitter**: [@NovaNet_Official](https://twitter.com/NovaNetChain)  
+- 📢 **Telegram**: [NovaNet Governance](https://t.me/NovaNetChat)  
 
 🚀 **Join us in building the future of decentralized AI-driven governance & blockchain with NVIDIA-powered efficiency!**
