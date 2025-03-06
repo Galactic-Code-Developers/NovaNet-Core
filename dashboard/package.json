@@ -1,0 +1,17 @@
+{
+  "name": "novanet-dashboard",
+  "version": "1.0.0",
+  "description": "Live AI-powered NovaNet Validator Monitoring Dashboard",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "ethers": "^5.7.0"
+  },
+  "devDependencies": {
+    "react-scripts": "^5.0.0"
+  }
+}
