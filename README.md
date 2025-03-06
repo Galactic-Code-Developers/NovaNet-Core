@@ -1,4 +1,15 @@
-# 🚀 NovaNet: AI-Optimized Blockchain Infrastructure
+### **🚀 Updated `README.md` with NVIDIA Jetson Orin Integration**  
+This update includes **full NVIDIA Jetson Orin Nano Supercomputer integration**, ensuring:  
+* **AI-Optimized Validator Selection Using TensorRT**  
+* **Real-Time Fraud Detection via NVIDIA AI Inference**  
+* **Edge Computing for Decentralized Staking & Delegation**  
+* **Quantum-Assisted Smart Contracts Execution**  
+
+---
+
+### **📜 `README.md` (Updated)**
+```md
+# 🚀 NovaNet: AI-Optimized Blockchain with NVIDIA Jetson Orin Support
 
 ## 🌍 Overview
 NovaNet is a **next-generation blockchain** integrating **AI-powered governance, decentralized validation, and quantum-resistant security**. Built for **scalability, efficiency, and interoperability**, NovaNet introduces:
@@ -8,6 +19,22 @@ NovaNet is a **next-generation blockchain** integrating **AI-powered governance,
 * **Quantum-Secure Smart Contracts** – Enhanced cryptographic security  
 * **On-Chain Treasury Optimization** – AI-driven treasury fund allocation  
 * **Cross-Chain Bridges** – Seamless interoperability with Ethereum, Polkadot, Cosmos & Solana  
+* **💡 NVIDIA Jetson Orin Integration** – AI-enhanced fraud detection & validator ranking  
+
+---
+
+## 🔥 **NVIDIA Jetson Orin AI Optimization**
+NovaNet integrates **NVIDIA Jetson Orin Nano** for AI-enhanced blockchain processing:
+
+| **Feature** | **Benefit from NVIDIA Jetson Orin** |
+|------------|-------------------------------------|
+| **AI-Powered Validator Selection** | Uses **TensorRT acceleration** to process validator rankings. |
+| **Real-Time Fraud Detection** | Runs **AI-driven fraud detection models** on-device for low latency. |
+| **Quantum-Assisted Smart Contracts** | Executes **zero-knowledge proofs (ZKPs) with GPU acceleration**. |
+| **Edge Computing for Decentralization** | Reduces reliance on **centralized cloud computing**. |
+| **On-Device Staking & Delegation** | Runs **staking, governance, and delegation models locally**. |
+
+**NovaNet + NVIDIA Jetson Orin = Faster, Smarter, and More Secure Blockchain!**
 
 ---
 
@@ -37,6 +64,7 @@ Ensure you have the following installed:
 - **Hardhat** (latest version)
 - **Metamask** (for interacting with NovaNet Testnet)
 - **Python** (for AI off-chain analytics)
+- **NVIDIA Jetson Orin Nano SDK** (For GPU acceleration)
 
 ### 🔹 **1️⃣ Install Dependencies**
 ```sh
@@ -54,8 +82,9 @@ nano .env
 Modify the following values:
 ```env
 PRIVATE_KEY="your-private-key"
-NOVANET_RPC_TESTNET="https://testnet-rpc.novanet.io"
-NOVANET_RPC_MAINNET="https://rpc.novanet.io"
+NOVANET_RPC_TESTNET="https://testnet-rpc.novanetchain.xyz"
+NOVANET_RPC_MAINNET="https://rpc.novanetchain.xyz"
+ENABLE_NVIDIA_AI="true"
 ```
 
 ---
@@ -79,6 +108,16 @@ npx hardhat verify --network testnet <contract-address>
 
 ---
 
+## 🔥 **AI-Enhanced Validator Ranking with TensorRT**
+NovaNet integrates **NVIDIA TensorRT & CUDA acceleration** for validator selection.
+
+To run AI-based validator scoring on Jetson Orin:
+```sh
+python3 scripts/ai_validator_ranking.py
+```
+
+---
+
 ## 🛠 Running Tests
 
 ### 🔹 **Run Unit Tests**
@@ -98,66 +137,12 @@ npm run monitor
 
 ---
 
-## 🔥 Key Features
-
-### 🛡 **AI-Driven Validator Selection & Reputation**
-- Automatically selects **high-performing validators** based on **performance & AI reputation scoring**.
-- Validators with **poor uptime or fraudulent activity** are flagged for **slashing**.
-
-### 🏛 **AI-Powered Governance & Voting**
-- AI ranks proposals before submission, preventing spam or **low-impact governance actions**.
-- Dynamic **reputation-based voting power** ensures fairness.
-- AI fraud detection prevents **vote manipulation**.
-
-### 💰 **AI-Optimized Treasury Management**
-- **AI-driven fund allocation** ensures efficient resource utilization.
-- **Real-time fraud detection** prevents treasury mismanagement.
-- **Automated validator & delegator rewards distribution**.
-
-### 🔗 **Cross-Chain Interoperability**
-- Seamless **bridging between Ethereum, Polkadot, Cosmos & Solana**.
-- **NovaNetBridge.sol** allows **secure, low-cost asset transfers**.
-
----
-
-## 🌉 Cross-Chain Integration
-NovaNet supports multiple **EVM-compatible chains** via its **Quantum Entangled Bridge (QEB)**.
-
-### 🔹 **Supported Networks**
-✅ **Ethereum (ETH Mainnet & Layer-2s)**  
-✅ **Polkadot (Substrate-based chains)**  
-✅ **Cosmos (IBC-compliant chains)**  
-✅ **Solana (High-speed DeFi integrations)**  
-
-To bridge assets:
-```sh
-npx hardhat run scripts/bridge.js --network testnet
-```
-
----
-
-## 🛡 Security & AI Governance
-
-### **✔ AI-Powered Slashing**
-- Validators **violating uptime or staking rules** are **automatically slashed**.
-- **AI fraud detection** prevents Sybil attacks.
-
-### **✔ On-Chain AI Audit Logs**
-- All governance and validator actions are **recorded in `AIAuditLogger.sol`**.
-- **Ensures full transparency & immutability** of governance decisions.
-
-### **✔ Treasury & Fund Optimization**
-- **AI-optimized staking & reward allocation**.
-- **AI-based dynamic gas fee adjustments**.
-
----
-
 ## 🔍 Block Explorer & Network Details
 
 | **Network** | **RPC URL** | **Chain ID** | **Explorer** |
 |------------|------------|--------------|--------------|
 | **Testnet** | `https://testnet-rpc.novanetchain.xyz` | `1030` | [NovaNet Testnet Explorer](https://explorer.novanetchain.xyz/testnet) |
-| **Mainnet** | `https://rpc.novanetchain.xyz` | `2030` | [NovaNet Mainnet Explorer](https://explorer.novanetchain.xyz/mainnet) |
+| **Mainnet** | `https://rpc.chain.xyz.io` | `2030` | [NovaNet Mainnet Explorer](https://explorer.novanetchain.xyzo/mainnet) |
 
 ---
 
@@ -167,8 +152,7 @@ npx hardhat run scripts/bridge.js --network testnet
 📘 **GitHub Docs**: [NovaNet Developer Wiki](https://github.com/Galactic-Code-Developers/NovaNet-Core/wiki)  
 📢 **Community**:  
 - 🗣️ **Discord**: [NovaNet Community Chat](https://discord.gg/NovaNet)  
-- 🏛 **Twitter**: [@NovaNetChain](https://twitter.com/NovaNethain)  
-- 📢 **Telegram**: [NovaNet Governance](https://t.me/NovaNetChat)  
+- 🏛 **Twitter**: [@NovaNet_Official](https://twitter.com/NovaNet_Official)  
+- 📢 **Telegram**: [NovaNet Governance](https://t.me/NovaNetGovernance)  
 
-🚀 **Join us in building the future of decentralized AI-driven governance & blockchain!**  
-
+🚀 **Join us in building the future of decentralized AI-driven governance & blockchain with NVIDIA-powered efficiency!**
