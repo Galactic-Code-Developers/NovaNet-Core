@@ -3,11 +3,11 @@
 ## 🌍 Overview
 NovaNet is a **next-generation blockchain** integrating **AI-powered governance, decentralized validation, and quantum-resistant security**. Built for **scalability, efficiency, and interoperability**, NovaNet introduces:
 
-✔ **AI-Driven Proof-of-Stake (AI-DPoS)** – Intelligent validator selection & staking rewards  
-✔ **Governance Automation** – AI-powered proposal scoring & fraud detection  
-✔ **Quantum-Secure Smart Contracts** – Enhanced cryptographic security  
-✔ **On-Chain Treasury Optimization** – AI-driven treasury fund allocation  
-✔ **Cross-Chain Bridges** – Seamless interoperability with Ethereum, Polkadot, Cosmos & Solana  
+* **AI-Driven Proof-of-Stake (AI-DPoS)** – Intelligent validator selection & staking rewards  
+* **Governance Automation** – AI-powered proposal scoring & fraud detection  
+* **Quantum-Secure Smart Contracts** – Enhanced cryptographic security  
+* **On-Chain Treasury Optimization** – AI-driven treasury fund allocation  
+* **Cross-Chain Bridges** – Seamless interoperability with Ethereum, Polkadot, Cosmos & Solana  
 
 ---
 
