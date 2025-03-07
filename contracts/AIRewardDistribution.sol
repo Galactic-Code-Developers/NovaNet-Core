@@ -7,27 +7,31 @@ import "./AIValidatorReputation.sol";
 import "./AIAuditLogger.sol";
 import "./NovaNetStaking.sol";
 
+/// @title AI Reward Distribution - AI-Governed Reward System for NovaNet
+/// @notice Distributes staking rewards dynamically based on AI-powered validator reputation, stake weight, and network conditions.
 contract AIRewardDistribution is Ownable, ReentrancyGuard {
+    
     struct RewardInfo {
         address recipient;
         uint256 amount;
         uint256 timestamp;
+        bytes32 quantumHash;
     }
 
-    uint256 public baseRewardRate = 5; // Base reward percentage
-    uint256 public reputationMultiplier = 20; // Extra rewards for high reputation
-    uint256 public performanceMultiplier = 15; // Extra rewards for high-performing validators
+    uint256 public baseRewardRate = 5; // Base percentage rate for rewards
+    uint256 public dynamicReputationMultiplier = 15; // AI-adjusted reputation weight
+    uint256 public dynamicPerformanceMultiplier = 10; // AI-driven performance weight
     uint256 public totalDistributedRewards;
 
     mapping(address => uint256) public lastClaimedReward;
-    RewardInfo[] public rewardHistory;
+    mapping(address => RewardInfo) public rewardHistory;
 
     NovaNetStaking public stakingContract;
     AIValidatorReputation public reputationContract;
     AIAuditLogger public auditLogger;
 
-    event RewardDistributed(address indexed recipient, uint256 amount, uint256 timestamp);
-    event RewardParametersUpdated(uint256 baseRewardRate, uint256 reputationMultiplier, uint256 performanceMultiplier);
+    event RewardDistributed(address indexed recipient, uint256 amount, uint256 timestamp, bytes32 quantumHash);
+    event RewardParametersUpdated(uint256 baseRewardRate, uint256 dynamicReputationMultiplier, uint256 dynamicPerformanceMultiplier);
 
     constructor(
         address _stakingContract,
@@ -39,26 +43,23 @@ contract AIRewardDistribution is Ownable, ReentrancyGuard {
         auditLogger = AIAuditLogger(_auditLogger);
     }
 
-    /// @notice AI-driven calculation of staking rewards.
+    /// @notice AI-powered staking reward calculation.
     function calculateReward(address _staker, uint256 _rewardPool) public view returns (uint256) {
         uint256 stakedAmount = stakingContract.getStakeAmount(_staker);
         uint256 reputationScore = reputationContract.getReputation(_staker);
-        
+
+        // AI-Weighted Reward Calculation
         uint256 baseReward = (stakedAmount * baseRewardRate) / 100;
-        uint256 reputationBonus = (baseReward * reputationScore * reputationMultiplier) / 10000;
-        uint256 totalReward = baseReward + reputationBonus;
+        uint256 aiWeightedBonus = (baseReward * reputationScore * dynamicReputationMultiplier) / 10000;
+        uint256 totalReward = baseReward + aiWeightedBonus;
 
-        if (totalReward > _rewardPool) {
-            totalReward = _rewardPool;
-        }
-
-        return totalReward;
+        return totalReward > _rewardPool ? _rewardPool : totalReward;
     }
 
-    /// @notice Distributes staking rewards based on AI scoring.
+    /// @notice Distributes rewards across all stakers using AI-powered ranking.
     function distributeRewards() external onlyOwner nonReentrant {
         address[] memory stakers = stakingContract.getStakers();
-        uint256 rewardPool = address(this).balance / 10; // 10% of contract balance allocated for rewards
+        uint256 rewardPool = address(this).balance / 10; // Allocate 10% of contract balance for rewards
 
         for (uint256 i = 0; i < stakers.length; i++) {
             uint256 reward = calculateReward(stakers[i], rewardPool);
@@ -67,34 +68,40 @@ contract AIRewardDistribution is Ownable, ReentrancyGuard {
                 lastClaimedReward[stakers[i]] = block.timestamp;
                 totalDistributedRewards += reward;
 
-                rewardHistory.push(RewardInfo({
+                bytes32 quantumHash = generateQuantumHash(stakers[i], reward, block.timestamp);
+
+                rewardHistory[stakers[i]] = RewardInfo({
                     recipient: stakers[i],
                     amount: reward,
-                    timestamp: block.timestamp
-                }));
+                    timestamp: block.timestamp,
+                    quantumHash: quantumHash
+                });
 
                 // AI Audit Logging
-                string memory auditEntry = string(
-                    abi.encodePacked(
-                        "Reward Distributed: ", uintToString(reward),
-                        " | Recipient: ", toAsciiString(stakers[i])
-                    )
-                );
-                auditLogger.logGovernanceAction(rewardHistory.length, auditEntry);
+                auditLogger.logAudit("Reward", "Validator Reward Distributed", reward, stakers[i]);
 
-                emit RewardDistributed(stakers[i], reward, block.timestamp);
+                emit RewardDistributed(stakers[i], reward, block.timestamp, quantumHash);
             }
         }
     }
 
-    /// @notice Updates reward distribution parameters.
-    function updateRewardParameters(uint256 _baseRate, uint256 _reputationMultiplier, uint256 _performanceMultiplier) external onlyOwner {
-        require(_baseRate > 0 && _reputationMultiplier > 0 && _performanceMultiplier > 0, "Values must be greater than zero.");
-        baseRewardRate = _baseRate;
-        reputationMultiplier = _reputationMultiplier;
-        performanceMultiplier = _performanceMultiplier;
+    /// @notice AI-enhanced reward adjustment model.
+    function adjustAIRewardMultipliers(uint256 networkLoadFactor) external onlyOwner {
+        require(networkLoadFactor >= 1 && networkLoadFactor <= 100, "Invalid network factor.");
 
-        emit RewardParametersUpdated(_baseRate, _reputationMultiplier, _performanceMultiplier);
+        // Dynamic adjustment based on network conditions
+        dynamicReputationMultiplier = 15 + (networkLoadFactor / 10); 
+        dynamicPerformanceMultiplier = 10 + (networkLoadFactor / 20);
+
+        emit RewardParametersUpdated(baseRewardRate, dynamicReputationMultiplier, dynamicPerformanceMultiplier);
+    }
+
+    /// @dev Generates a quantum-secure hash for reward logs.
+    function generateQuantumHash(address recipient, uint256 amount, uint256 timestamp) internal pure returns (bytes32) {
+        return keccak256(abi.encodePacked(
+            sha256(abi.encodePacked(recipient, amount)),
+            keccak256(abi.encodePacked(timestamp))
+        ));
     }
 
     /// @notice Returns total distributed rewards.
@@ -102,52 +109,8 @@ contract AIRewardDistribution is Ownable, ReentrancyGuard {
         return totalDistributedRewards;
     }
 
-    /// @notice Returns the reward history.
-    function getRewardHistory() external view returns (RewardInfo[] memory) {
-        return rewardHistory;
-    }
-
-    /// @notice Converts an address to a string.
-    function toAsciiString(address _addr) internal pure returns (string memory) {
-        bytes memory addressBytes = abi.encodePacked(_addr);
-        bytes memory hexString = new bytes(42);
-
-        hexString[0] = "0";
-        hexString[1] = "x";
-
-        for (uint256 i = 0; i < 20; i++) {
-            bytes1 byteValue = addressBytes[i];
-            hexString[2 + (i * 2)] = byteToHexChar(uint8(byteValue) / 16);
-            hexString[3 + (i * 2)] = byteToHexChar(uint8(byteValue) % 16);
-        }
-
-        return string(hexString);
-    }
-
-    /// @notice Converts a byte to a hex character.
-    function byteToHexChar(uint8 _byte) internal pure returns (bytes1) {
-        if (_byte < 10) {
-            return bytes1(uint8(_byte) + 48); // ASCII '0' to '9'
-        } else {
-            return bytes1(uint8(_byte) + 87); // ASCII 'a' to 'f'
-        }
-    }
-
-    /// @notice Converts a uint256 to a string.
-    function uintToString(uint256 _value) internal pure returns (string memory) {
-        if (_value == 0) return "0";
-        uint256 temp = _value;
-        uint256 digits;
-        while (temp != 0) {
-            digits++;
-            temp /= 10;
-        }
-        bytes memory buffer = new bytes(digits);
-        while (_value != 0) {
-            digits -= 1;
-            buffer[digits] = bytes1(uint8(48 + uint256(_value % 10)));
-            _value /= 10;
-        }
-        return string(buffer);
+    /// @notice Retrieves a recipient's last reward information.
+    function getRewardInfo(address recipient) external view returns (RewardInfo memory) {
+        return rewardHistory[recipient];
     }
 }
