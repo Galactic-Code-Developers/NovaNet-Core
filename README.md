@@ -48,13 +48,7 @@ NovaNet’s core system consists of multiple smart contracts, each handling a sp
 This repository uses shared smart contracts hosted in the [NovaNet-CommonContracts](https://github.com/Galactic-Code-Developers/NovaNet-CommonContracts) repository for consistent implementation and easy updates.
 
 ### Contracts Included:
-- QuantumSecureHasher.sol (Quantum-resistant hashing utility)
 
-### Usage Instructions:
-Manually download and include contracts from the shared repository:
-- [QuantumSecureHasher.sol](https://github.com/Galactic-Code-Developers/NovaNet-CommonContracts/blob/main/contracts/QuantumSecureHasher.sol) Example
-
-### Contracts Included:
 - **QuantumSecureHasher.sol** *(Quantum-resistant hashing utility)*
 - **AIAuditLogger.sol** *(On-chain logging of AI governance and validator actions)*
 - **AIValidatorSelection.sol** *(AI-based selection of validators)*
@@ -67,6 +61,10 @@ Manually download and include contracts from the shared repository:
 - **AIGovernanceFraudDetection.sol** *(Detects fraudulent governance activity via AI analysis)*
 - **AIVotingModel.sol** *(AI-based dynamic voting power adjustments)*
 - **AIValidatorReputation.sol** *(Real-time tracking of validator reputation)*
+
+### Usage Instructions:
+Manually download and include contracts from the shared repository:
+- [QuantumSecureHasher.sol](https://github.com/Galactic-Code-Developers/NovaNet-CommonContracts/blob/main/contracts/QuantumSecureHasher.sol) Example
 
 **Note:** Regularly update this contract from the shared repository to maintain compatibility.
 
