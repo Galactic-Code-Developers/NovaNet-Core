@@ -7,7 +7,10 @@ import "./AIValidatorSelection.sol";
 import "./AIValidatorReputation.sol";
 import "./AISlashingMonitor.sol";
 import "./AIGovernanceFraudDetection.sol";
+import "./AIValidatorRewards.sol";
+import "./QuantumSecureHasher.sol";
 import "./NovaNetStaking.sol";
+import "./NovaNetGovernance.sol";
 
 contract NovaNetConsensus is Ownable, ReentrancyGuard {
     struct Validator {
@@ -15,6 +18,7 @@ contract NovaNetConsensus is Ownable, ReentrancyGuard {
         uint256 stakedAmount;
         uint256 lastBlockProduced;
         bool isActive;
+        string quantumHash;
     }
 
     mapping(address => Validator) public validators;
@@ -26,9 +30,12 @@ contract NovaNetConsensus is Ownable, ReentrancyGuard {
     AIValidatorReputation public reputationContract;
     AISlashingMonitor public slashingMonitor;
     AIGovernanceFraudDetection public fraudDetection;
+    AIValidatorRewards public rewardDistribution;
+    QuantumSecureHasher public quantumHasher;
     NovaNetStaking public stakingContract;
+    NovaNetGovernance public governanceContract;
 
-    event ValidatorRegistered(address indexed validator, uint256 stakeAmount);
+    event ValidatorRegistered(address indexed validator, uint256 stakeAmount, string quantumHash);
     event ValidatorSlashed(address indexed validator, uint256 penalty);
     event ValidatorRemoved(address indexed validator);
     event NewEpochStarted(uint256 epoch, address[] newValidators);
@@ -40,16 +47,22 @@ contract NovaNetConsensus is Ownable, ReentrancyGuard {
         address _reputationContract,
         address _slashingMonitor,
         address _fraudDetection,
-        address _stakingContract
+        address _stakingContract,
+        address _rewardDistribution,
+        address _quantumHasher,
+        address _governanceContract
     ) {
         validatorSelection = AIValidatorSelection(_validatorSelection);
         reputationContract = AIValidatorReputation(_reputationContract);
         slashingMonitor = AISlashingMonitor(_slashingMonitor);
         fraudDetection = AIGovernanceFraudDetection(_fraudDetection);
         stakingContract = NovaNetStaking(_stakingContract);
+        rewardDistribution = AIValidatorRewards(_rewardDistribution);
+        quantumHasher = QuantumSecureHasher(_quantumHasher);
+        governanceContract = NovaNetGovernance(_governanceContract);
     }
 
-    /// @notice Registers a validator into the NovaNet Q-DPoS system.
+    /// @notice Registers a validator into the NovaNet Q-DPoS system with Quantum Security.
     function registerValidator(uint256 _stakeAmount) external nonReentrant {
         require(_stakeAmount >= 10_000 ether, "Minimum stake required: 10,000 NOVA");
         require(validators[msg.sender].validatorAddress == address(0), "Validator already registered");
@@ -57,15 +70,19 @@ contract NovaNetConsensus is Ownable, ReentrancyGuard {
         stakingContract.stake(msg.sender, _stakeAmount);
         totalStaked += _stakeAmount;
 
+        // Generate Quantum Secure Hash for Validator Registration
+        string memory quantumHash = quantumHasher.generateQuantumHash(msg.sender, _stakeAmount, "Validator Registration");
+
         validators[msg.sender] = Validator({
             validatorAddress: msg.sender,
             stakedAmount: _stakeAmount,
             lastBlockProduced: block.number,
-            isActive: true
+            isActive: true,
+            quantumHash: quantumHash
         });
 
         activeValidators.push(msg.sender);
-        emit ValidatorRegistered(msg.sender, _stakeAmount);
+        emit ValidatorRegistered(msg.sender, _stakeAmount, quantumHash);
     }
 
     /// @notice AI-based validator selection process for epoch rotations.
@@ -88,7 +105,7 @@ contract NovaNetConsensus is Ownable, ReentrancyGuard {
         emit NewEpochStarted(block.number / epochBlockCount, selectedValidators);
     }
 
-    /// @notice Records block production and updates last produced block
+    /// @notice Records block production and updates last produced block.
     function produceBlock() external {
         require(validators[msg.sender].isActive, "Only active validators can produce blocks");
         
@@ -111,7 +128,7 @@ contract NovaNetConsensus is Ownable, ReentrancyGuard {
     /// @notice Removes an inactive or penalized validator from the system.
     function removeValidator(address _validator) external onlyOwner {
         require(validators[_validator].validatorAddress != address(0), "Validator does not exist");
-        
+
         validators[_validator].isActive = false;
         stakingContract.unstake(_validator, validators[_validator].stakedAmount);
         delete validators[_validator];
