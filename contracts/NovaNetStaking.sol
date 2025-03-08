@@ -6,13 +6,16 @@ import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import "./AIRewardDistribution.sol";
 import "./AISlashingMonitor.sol";
 import "./AIValidatorReputation.sol";
+import "./AISlashingAdjuster.sol";
 import "./AIGovernanceFraudDetection.sol";
+import "./QuantumSecureHasher.sol";
 
 contract NovaNetStaking is Ownable, ReentrancyGuard {
     struct StakeInfo {
         uint256 amount;
         uint256 lastStakedBlock;
         bool isValidator;
+        string quantumHash;
     }
 
     mapping(address => StakeInfo) public stakes;
@@ -24,9 +27,11 @@ contract NovaNetStaking is Ownable, ReentrancyGuard {
     AIRewardDistribution public rewardDistribution;
     AISlashingMonitor public slashingMonitor;
     AIValidatorReputation public reputationContract;
+    AISlashingAdjuster public slashingAdjuster;
     AIGovernanceFraudDetection public fraudDetection;
+    QuantumSecureHasher public quantumHasher;
 
-    event Staked(address indexed user, uint256 amount, bool isValidator);
+    event Staked(address indexed user, uint256 amount, bool isValidator, string quantumHash);
     event Unstaked(address indexed user, uint256 amount);
     event Slashed(address indexed validator, uint256 penalty);
     event RewardDistributed(address indexed user, uint256 amount);
@@ -36,30 +41,38 @@ contract NovaNetStaking is Ownable, ReentrancyGuard {
         address _rewardDistribution,
         address _slashingMonitor,
         address _reputationContract,
-        address _fraudDetection
+        address _slashingAdjuster,
+        address _fraudDetection,
+        address _quantumHasher
     ) {
         rewardDistribution = AIRewardDistribution(_rewardDistribution);
         slashingMonitor = AISlashingMonitor(_slashingMonitor);
         reputationContract = AIValidatorReputation(_reputationContract);
+        slashingAdjuster = AISlashingAdjuster(_slashingAdjuster);
         fraudDetection = AIGovernanceFraudDetection(_fraudDetection);
+        quantumHasher = QuantumSecureHasher(_quantumHasher);
     }
 
-    /// @notice Allows users to stake funds as a validator or delegator.
+    /// @notice Allows users to stake funds as a validator or delegator with quantum-secure verification.
     function stake(bool _isValidator) external payable nonReentrant {
         require(msg.value > 0, "Stake amount must be greater than zero.");
-        
+
         if (_isValidator) {
             require(msg.value >= minValidatorStake, "Validator stake must meet minimum.");
         } else {
             require(msg.value >= minDelegatorStake, "Delegator stake must meet minimum.");
         }
 
+        // Generate Quantum Secure Hash for Stake Verification
+        string memory quantumHash = quantumHasher.generateQuantumHash(msg.sender, msg.value, "Stake Registration");
+
         stakes[msg.sender].amount += msg.value;
         stakes[msg.sender].lastStakedBlock = block.number;
         stakes[msg.sender].isValidator = _isValidator;
+        stakes[msg.sender].quantumHash = quantumHash;
         totalStaked += msg.value;
 
-        emit Staked(msg.sender, msg.value, _isValidator);
+        emit Staked(msg.sender, msg.value, _isValidator, quantumHash);
     }
 
     /// @notice Allows users to unstake funds after cooldown.
@@ -79,11 +92,13 @@ contract NovaNetStaking is Ownable, ReentrancyGuard {
         require(stakes[_validator].isValidator, "Address is not a validator.");
         require(_penalty <= stakes[_validator].amount, "Penalty exceeds staked amount.");
 
-        stakes[_validator].amount -= _penalty;
-        totalStaked -= _penalty;
+        // Adjust slashing penalty using AI-based analysis
+        uint256 adjustedPenalty = slashingAdjuster.adjustSlashingPenalty(_validator, _penalty);
+        stakes[_validator].amount -= adjustedPenalty;
+        totalStaked -= adjustedPenalty;
 
-        slashingMonitor.recordSlashing(_validator, _penalty);
-        emit Slashed(_validator, _penalty);
+        slashingMonitor.recordSlashing(_validator, adjustedPenalty);
+        emit Slashed(_validator, adjustedPenalty);
     }
 
     /// @notice Distributes staking rewards using AI-driven optimization.
@@ -116,8 +131,8 @@ contract NovaNetStaking is Ownable, ReentrancyGuard {
     }
 
     /// @notice Returns staked information for a user.
-    function getStakeInfo(address _user) external view returns (uint256 amount, uint256 lastStakedBlock, bool isValidator) {
+    function getStakeInfo(address _user) external view returns (uint256 amount, uint256 lastStakedBlock, bool isValidator, string memory quantumHash) {
         StakeInfo storage stake = stakes[_user];
-        return (stake.amount, stake.lastStakedBlock, stake.isValidator);
+        return (stake.amount, stake.lastStakedBlock, stake.isValidator, stake.quantumHash);
     }
 }
