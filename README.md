@@ -162,14 +162,14 @@ npm run monitor
 
 ## Resources
 
-📜 **Whitepaper**: [NovaNet Hybrid Quantum-Blockchain Whitepaper](https://github.com/Galactic-Code-Developers/NovaNet-Core/wiki/Whitepaper)  
-📘 **GitHub Docs**: [NovaNet Developer Wiki](https://github.com/Galactic-Code-Developers/NovaNet-Core/wiki)  
-📢 **Community**:  
-- 🗣️ **Discord**: [NovaNet Community Chat](https://discord.gg/NovaNet)  
-- 🏛 **Twitter**: [@NovaNet_Official](https://twitter.com/NovaNetChain)  
-- 📢 **Telegram**: [NovaNet Governance](https://t.me/NovaNetChat)  
+**Whitepaper**: [NovaNet Hybrid Quantum-Blockchain Whitepaper](https://github.com/Galactic-Code-Developers/NovaNet-Core/wiki/Whitepaper)  
+**GitHub Docs**: [NovaNet Developer Wiki](https://github.com/Galactic-Code-Developers/NovaNet-Core/wiki)  
+**Community**:  
+- **Discord**: [NovaNet Community Chat](https://discord.gg/NovaNet)  
+- **Twitter**: [@NovaNet_Official](https://twitter.com/NovaNetChain)  
+- **Telegram**: [NovaNet Governance](https://t.me/NovaNetChat)  
 
-🚀 **Join us in building the future of decentralized AI-driven governance & blockchain with NVIDIA-powered efficiency!**
+**Join us in building the future of decentralized AI-driven governance & blockchain with NVIDIA-powered efficiency!**
 
 ## License
 
