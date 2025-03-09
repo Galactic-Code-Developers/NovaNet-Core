@@ -1,6 +1,6 @@
 # 🚀 NovaNet: AI-Optimized Blockchain with NVIDIA Jetson Orin Support
 
-## 🌍 Overview
+## Overview
 NovaNet is a **next-generation blockchain** integrating **AI-powered governance, decentralized validation, and quantum-resistant security**. Built for **scalability, efficiency, and interoperability**, NovaNet introduces:
 
 * **AI-Driven Proof-of-Stake (AI-DPoS)** – Intelligent validator selection & staking rewards  
@@ -8,11 +8,11 @@ NovaNet is a **next-generation blockchain** integrating **AI-powered governance,
 * **Quantum-Secure Smart Contracts** – Enhanced cryptographic security  
 * **On-Chain Treasury Optimization** – AI-driven treasury fund allocation  
 * **Cross-Chain Bridges** – Seamless interoperability with Ethereum, Polkadot, Cosmos & Solana  
-* **💡 NVIDIA Jetson Orin Integration** – AI-enhanced fraud detection & validator ranking  
+* **NVIDIA Jetson Orin Integration** – AI-enhanced fraud detection & validator ranking  
 
 ---
 
-## 🔥 **NVIDIA Jetson Orin AI Optimization**
+## **NVIDIA Jetson Orin AI Optimization**
 NovaNet integrates **NVIDIA Jetson Orin Nano** for AI-enhanced blockchain processing:
 
 | **Feature** | **Benefit from NVIDIA Jetson Orin** |
@@ -27,7 +27,7 @@ NovaNet integrates **NVIDIA Jetson Orin Nano** for AI-enhanced blockchain proces
 
 ---
 
-## 📜 Smart Contract Overview
+## Smart Contract Overview
 NovaNet’s core system consists of multiple smart contracts, each handling a specific function:
 
 | **Contract Name**          | **Function** |
@@ -69,7 +69,7 @@ Manually download and include contracts from the shared repository:
 **Note:** Regularly update this contract from the shared repository to maintain compatibility.
 
 ---
-## ⚙️ Installation & Setup
+## Installation & Setup
 
 ### 🔹 **Prerequisites**
 Ensure you have the following installed:
@@ -80,14 +80,14 @@ Ensure you have the following installed:
 - **Python** (for AI off-chain analytics)
 - **NVIDIA Jetson Orin Nano SDK** (For GPU acceleration)
 
-### 🔹 **1️⃣ Install Dependencies**
+### 🔹 **Install Dependencies**
 ```sh
 git clone https://github.com/Galactic-Code-Developers/NovaNet-Core.git
 cd NovaNet-Core
 npm install
 ```
 
-### 🔹 **2️⃣ Configure Environment**
+### 🔹 **Configure Environment**
 Create a `.env` file and fill in the required NovaNet parameters:
 ```sh
 cp .env.example .env
@@ -103,7 +103,7 @@ ENABLE_NVIDIA_AI="true"
 
 ---
 
-## 🚀 Deployment Guide
+## Deployment Guide
 
 ### 🔹 **Deploy to NovaNet Testnet**
 ```sh
@@ -122,7 +122,7 @@ npx hardhat verify --network testnet <contract-address>
 
 ---
 
-## 🔥 **AI-Enhanced Validator Ranking with TensorRT**
+## **AI-Enhanced Validator Ranking with TensorRT**
 NovaNet integrates **NVIDIA TensorRT & CUDA acceleration** for validator selection.
 
 To run AI-based validator scoring on Jetson Orin:
@@ -132,7 +132,7 @@ python3 scripts/ai_validator_ranking.py
 
 ---
 
-## 🛠 Running Tests
+## Running Tests
 
 ### 🔹 **Run Unit Tests**
 ```sh
@@ -151,7 +151,7 @@ npm run monitor
 
 ---
 
-## 🔍 Block Explorer & Network Details
+## Block Explorer & Network Details
 
 | **Network** | **RPC URL** | **Chain ID** | **Explorer** |
 |------------|------------|--------------|--------------|
@@ -160,7 +160,7 @@ npm run monitor
 
 ---
 
-## 🔗 Resources
+## Resources
 
 📜 **Whitepaper**: [NovaNet Hybrid Quantum-Blockchain Whitepaper](https://github.com/Galactic-Code-Developers/NovaNet-Core/wiki/Whitepaper)  
 📘 **GitHub Docs**: [NovaNet Developer Wiki](https://github.com/Galactic-Code-Developers/NovaNet-Core/wiki)  
