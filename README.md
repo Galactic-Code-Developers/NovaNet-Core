@@ -1,7 +1,7 @@
-# 🚀 NovaNet: AI-Optimized Blockchain with NVIDIA Jetson Orin Support
+# NovaNet: AI-Optimized Blockchain with NVIDIA Jetson Orin Support
 
 ## Overview
-NovaNet is a **next-generation blockchain** integrating **AI-powered governance, decentralized validation, and quantum-resistant security**. Built for **scalability, efficiency, and interoperability**, NovaNet introduces:
+NovaNet is a next-generation blockchain integrating AI-powered governance, decentralized validation, and quantum-resistant security. Built for scalability, efficiency, and interoperability, NovaNet introduces:
 
 * **AI-Driven Proof-of-Stake (AI-DPoS)** – Intelligent validator selection & staking rewards  
 * **Governance Automation** – AI-powered proposal scoring & fraud detection  
@@ -17,11 +17,11 @@ NovaNet integrates **NVIDIA Jetson Orin Nano** for AI-enhanced blockchain proces
 
 | **Feature** | **Benefit from NVIDIA Jetson Orin** |
 |------------|-------------------------------------|
-| **AI-Powered Validator Selection** | Uses **TensorRT acceleration** to process validator rankings. |
-| **Real-Time Fraud Detection** | Runs **AI-driven fraud detection models** on-device for low latency. |
-| **Quantum-Assisted Smart Contracts** | Executes **zero-knowledge proofs (ZKPs) with GPU acceleration**. |
-| **Edge Computing for Decentralization** | Reduces reliance on **centralized cloud computing**. |
-| **On-Device Staking & Delegation** | Runs **staking, governance, and delegation models locally**. |
+| **AI-Powered Validator Selection** | Uses TensorRT acceleration to process validator rankings. |
+| **Real-Time Fraud Detection** | Runs AI-driven fraud detection models on-device for low latency. |
+| **Quantum-Assisted Smart Contracts** | Executes zero-knowledge proofs (ZKPs) with GPU acceleration. |
+| **Edge Computing for Decentralization** | Reduces reliance on centralized cloud computing. |
+| **On-Device Staking & Delegation** | Runs staking, governance, and delegation models locally. |
 
 **NovaNet + NVIDIA Jetson Orin = Faster, Smarter, and More Secure Blockchain!**
 
@@ -71,7 +71,7 @@ Manually download and include contracts from the shared repository:
 ---
 ## Installation & Setup
 
-### 🔹 **Prerequisites**
+### **Prerequisites**
 Ensure you have the following installed:
 - **Node.js** (v16+)
 - **npm** (v8+)
@@ -80,14 +80,14 @@ Ensure you have the following installed:
 - **Python** (for AI off-chain analytics)
 - **NVIDIA Jetson Orin Nano SDK** (For GPU acceleration)
 
-### 🔹 **Install Dependencies**
+### **Install Dependencies**
 ```sh
 git clone https://github.com/Galactic-Code-Developers/NovaNet-Core.git
 cd NovaNet-Core
 npm install
 ```
 
-### 🔹 **Configure Environment**
+### **Configure Environment**
 Create a `.env` file and fill in the required NovaNet parameters:
 ```sh
 cp .env.example .env
@@ -105,17 +105,17 @@ ENABLE_NVIDIA_AI="true"
 
 ## Deployment Guide
 
-### 🔹 **Deploy to NovaNet Testnet**
+### **Deploy to NovaNet Testnet**
 ```sh
 npx hardhat run scripts/deploy.js --network testnet
 ```
 
-### 🔹 **Deploy to NovaNet Mainnet**
+### **Deploy to NovaNet Mainnet**
 ```sh
 npx hardhat run scripts/deploy.js --network mainnet
 ```
 
-### 🔹 **Verify Contracts on Explorer**
+### **Verify Contracts on Explorer**
 ```sh
 npx hardhat verify --network testnet <contract-address>
 ```
@@ -134,17 +134,17 @@ python3 scripts/ai_validator_ranking.py
 
 ## Running Tests
 
-### 🔹 **Run Unit Tests**
+### **Run Unit Tests**
 ```sh
 npx hardhat test
 ```
 
-### 🔹 **Check Gas Efficiency**
+### **Check Gas Efficiency**
 ```sh
 npm run gas-analysis
 ```
 
-### 🔹 **Monitor Slashing & Governance**
+### **Monitor Slashing & Governance**
 ```sh
 npm run monitor
 ```
@@ -166,7 +166,7 @@ npm run monitor
 **GitHub Docs**: [NovaNet Developer Wiki](https://github.com/Galactic-Code-Developers/NovaNet-Core/wiki)  
 **Community**:  
 - **Discord**: [NovaNet Community Chat](https://discord.gg/NovaNet)  
-- **Twitter**: [@NovaNet_Official](https://twitter.com/NovaNetChain)  
+- **Twitter**: [@NovaNetChain](https://twitter.com/NovaNetChain)  
 - **Telegram**: [NovaNet Governance](https://t.me/NovaNetChat)  
 
 **Join us in building the future of decentralized AI-driven governance & blockchain with NVIDIA-powered efficiency!**
